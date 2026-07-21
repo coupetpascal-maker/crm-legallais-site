@@ -1,0 +1,77 @@
+/* Mobile d'abord — Pascal consulte surtout sur iPhone. */
+:root {
+  --rouge: #e24b4a; --orange: #ef9f27; --vert: #1d9e75;
+  --fond: #f6f5f2; --carte-fond: #ffffff; --texte: #2c2c2a;
+  --texte-2: #6b6a64; --bord: #e3e1da; --accent: #2553a8;
+}
+* { box-sizing: border-box; margin: 0; }
+[hidden] { display: none !important; } /* l'attribut hidden doit toujours gagner */
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--fond); color: var(--texte);
+}
+h1 { font-size: 20px; margin: 16px 16px 12px; }
+#principal { padding-bottom: 76px; min-height: 100vh; }
+
+nav {
+  position: fixed; bottom: 0; left: 0; right: 0; display: flex;
+  background: var(--carte-fond); border-top: 1px solid var(--bord);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+nav button {
+  flex: 1; padding: 14px 0; border: 0; background: none;
+  font-size: 14px; color: var(--texte-2);
+}
+nav button.actif { color: var(--accent); font-weight: 600; }
+
+#ecran-code { display: flex; min-height: 100vh; align-items: center; justify-content: center; }
+#form-code { display: flex; flex-direction: column; gap: 12px; width: 280px; text-align: center; }
+#form-code input, #form-code button { padding: 12px; font-size: 16px; border-radius: 10px; border: 1px solid var(--bord); }
+#form-code button { background: var(--accent); color: #fff; border: 0; }
+.erreur { color: var(--rouge); font-size: 14px; }
+
+.carte-visite, .ligne-client, .carte-jour {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--carte-fond); border: 1px solid var(--bord);
+  border-radius: 12px; padding: 12px; margin: 8px 16px;
+}
+ol.visites { list-style: none; padding: 0; }
+.rang {
+  width: 30px; height: 30px; border-radius: 50%; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; flex-shrink: 0;
+}
+.rang.hi { background: var(--rouge); }
+.rang.mid { background: var(--orange); }
+.rang.lo { background: var(--vert); }
+.infos { flex: 1; min-width: 0; }
+.infos strong { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sous { font-size: 13px; color: var(--texte-2); }
+.action { font-size: 22px; text-decoration: none; padding: 6px; }
+
+.bouton-large {
+  display: block; margin: 16px; padding: 14px; text-align: center;
+  background: var(--accent); color: #fff; border-radius: 12px;
+  text-decoration: none; font-weight: 600; border: 0; width: calc(100% - 32px); font-size: 16px;
+}
+.pastilles { display: flex; gap: 8px; margin: 0 16px 12px; }
+.pastilles button {
+  padding: 8px 14px; border-radius: 999px; border: 1px solid var(--bord);
+  background: var(--carte-fond); font-size: 14px; color: var(--texte-2);
+}
+.pastilles button.actif { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+#carte { height: calc(100vh - 180px); margin: 0 16px; border-radius: 12px; }
+
+.kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 16px 12px; }
+.kpi { background: var(--carte-fond); border: 1px solid var(--bord); border-radius: 12px; padding: 12px; }
+.kpi .valeur { font-size: 20px; font-weight: 600; display: block; }
+.kpi .libelle { font-size: 12px; color: var(--texte-2); }
+.barre-outils { display: flex; gap: 8px; margin: 0 16px 12px; }
+.barre-outils input, .barre-outils select {
+  padding: 10px; border-radius: 10px; border: 1px solid var(--bord); font-size: 15px;
+}
+.barre-outils input { flex: 1; min-width: 0; }
+.fiche dt { font-size: 12px; color: var(--texte-2); margin-top: 10px; }
+.fiche dd { margin: 0; font-size: 16px; }
+.message-central { text-align: center; padding: 48px 24px; color: var(--texte-2); }

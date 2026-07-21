@@ -1,0 +1,123 @@
+/* Styles propres à l'app (hors design system theme.css) :
+   écran de code, plein écran, et fallback des vues pas encore refondues. */
+
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #fafaf7; color: #0e0e10;
+}
+[hidden] { display: none !important; }
+
+/* Le shell occupe tout l'écran */
+.crm-app { position: fixed; inset: 0; }
+
+/* —— Écran de code d'accès —— */
+#ecran-code { display: flex; min-height: 100vh; align-items: center; justify-content: center; padding: 24px; }
+#form-code { display: flex; flex-direction: column; gap: 14px; width: 300px; }
+#form-code .brand-lg { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+#form-code .brand-lg .mark {
+  width: 44px; height: 44px; border-radius: 9px; display: grid; place-items: center;
+  background: linear-gradient(135deg, #ffd500, #f0c800); color: #0e0e10;
+  font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
+}
+#form-code .brand-lg b { font-size: 16px; }
+#form-code .brand-lg span { display: block; font-size: 12px; color: #8c8c8e; }
+#form-code .invite { font-size: 13px; color: #4d4d50; }
+#form-code input, #form-code button {
+  padding: 12px 14px; font-size: 15px; border-radius: 8px; border: 1px solid #e8e7e1;
+  font-family: inherit;
+}
+#form-code input:focus { outline: none; border-color: #ffd500; box-shadow: 0 0 0 3px rgba(255,213,0,0.16); }
+#form-code button { background: #ffd500; color: #0e0e10; border: 0; font-weight: 600; cursor: pointer; }
+.erreur { color: #d33a2a; font-size: 13px; }
+
+/* —— Retouches Dashboard (lisibilité table & KPI) —— */
+.crm-kpi .delta { white-space: nowrap; }
+.crm-table th, .crm-table td.num { white-space: nowrap; }
+.crm-table td .client-cell .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+.crm-table td:last-child { width: 1%; white-space: nowrap; }
+.score-chip { white-space: nowrap; }
+
+/* —— Vue terrain sur iPhone (≤ 700px) : 1 colonne, header compact —— */
+@media (max-width: 700px) {
+  .t-visits { grid-template-columns: 1fr; }
+  .t-kpi-strip { grid-template-columns: 1fr 1fr; }
+  .t-header { gap: 8px; padding: 0 12px; padding-top: env(safe-area-inset-top); }
+  .t-ctx-chip, .t-sync { display: none; }            /* place réduite sur iPhone */
+  .t-tabs { padding: 0 12px; gap: 4px; overflow-x: auto; }
+  .t-tab { padding: 9px 12px; font-size: 13.5px; white-space: nowrap; }
+  .t-body { padding: 12px 12px 16px; gap: 12px; }
+  .t-sec-head { flex-wrap: wrap; }
+  .t-bnav { padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+  /* Le side-panel fiche passe en plein écran */
+  .side-panel { width: 100%; border-left: none; }
+}
+
+/* —— Carte Leaflet dans le canvas —— */
+#carte { height: 100%; min-height: 320px; border-radius: 8px; flex: 1; }
+
+/* —— Fallback legacy (vues clients/tournée/carte avant refonte complète) —— */
+.crm-canvas h1:not(.crm-h1) { font-size: 20px; margin: 0 0 8px; }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.kpi { background: #fff; border: 1px solid #e8e7e1; border-radius: 8px; padding: 14px; }
+.kpi .valeur { font-size: 20px; font-weight: 600; display: block; font-variant-numeric: tabular-nums; }
+.kpi .libelle { font-size: 12px; color: #6b6a64; }
+.barre-outils { display: flex; gap: 8px; }
+.barre-outils input, .barre-outils select {
+  padding: 10px; border-radius: 8px; border: 1px solid #e8e7e1; font-size: 14px; font-family: inherit;
+}
+.barre-outils input { flex: 1; min-width: 0; }
+.carte-visite, .ligne-client, .carte-jour {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border: 1px solid #e8e7e1; border-radius: 8px; padding: 12px;
+}
+.ligne-client { cursor: pointer; }
+.ligne-client:hover { background: #f6f5f0; }
+ol.visites { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.rang {
+  width: 30px; height: 30px; border-radius: 50%; color: #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0;
+}
+.rang.hi { background: #d33a2a; } .rang.mid { background: #e08321; } .rang.lo { background: #2f8049; }
+.infos { flex: 1; min-width: 0; }
+.infos strong { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sous { font-size: 13px; color: #6b6a64; }
+.action { font-size: 22px; padding: 6px; }
+.bouton-large {
+  display: block; padding: 14px; text-align: center; background: #ffd500; color: #0e0e10;
+  border-radius: 8px; text-decoration: none; font-weight: 600; border: 0; width: 100%;
+  font-size: 15px; cursor: pointer;
+}
+.pastilles { display: flex; gap: 8px; }
+.pastilles button {
+  padding: 8px 14px; border-radius: 999px; border: 1px solid #e8e7e1;
+  background: #fff; font-size: 14px; color: #6b6a64; cursor: pointer;
+}
+.pastilles button.actif { background: #ffd500; color: #0e0e10; border-color: #ffd500; }
+.fiche dt { font-size: 12px; color: #6b6a64; margin-top: 10px; }
+.fiche dd { margin: 0; font-size: 15px; }
+.message-central { text-align: center; padding: 48px 24px; color: #6b6a64; }
+
+/* Fiche — case « À recontacter » (section Suivi) */
+.suivi-toggle { display: flex; gap: 10px; align-items: flex-start; padding: 11px 12px;
+  border: 1px solid var(--c-border); border-radius: 9px; background: var(--c-app-bg); cursor: pointer; }
+.suivi-toggle input { margin-top: 2px; width: 17px; height: 17px; accent-color: var(--c-mid); flex: 0 0 auto; }
+.suivi-txt b { font-size: 13px; font-weight: 600; }
+.suivi-txt small { display: block; color: var(--c-text-soft); font-size: 11.5px; line-height: 1.5; margin-top: 2px; }
+.badge.recontact { background: var(--c-mid-bg); color: var(--c-mid); border-color: transparent; }
+.badge.recontact[hidden] { display: none; }
+
+/* Tournée — bloc « À recontacter » (iPhone) */
+.t-recontact { margin-bottom: 14px; }
+.t-recontact-head { display: flex; align-items: center; gap: 7px; margin-bottom: 8px;
+  color: var(--c-mid); font-size: 12px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; }
+.t-recontact-head .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--c-mid); }
+.t-recontact-head .n { color: var(--c-text-soft); }
+.t-recontact .t-visit { border-left: 3px solid var(--c-mid); }
+
+/* Tournée desktop (vue-jour) — bloc « À recontacter » */
+.jour-recontact-head { color: var(--c-mid); font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .02em; margin: 0 0 8px; }
+.recontact-list { margin-bottom: 18px; }
+.carte-visite.recontact { border-left: 3px solid var(--c-mid); }
+.carte-visite .rang.mid { background: var(--c-mid-bg); color: var(--c-mid); }

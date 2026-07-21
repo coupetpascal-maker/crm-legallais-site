@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>CRM Legallais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/tablet.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <!-- Écran de code d'accès -->
+  <section id="ecran-code" hidden>
+    <form id="form-code">
+      <div class="brand-lg"><span class="mark">CL</span>
+        <div><b>CRM Legallais</b><span>Tournées commerciales</span></div></div>
+      <p class="invite">Entre ton code d'accès</p>
+      <input id="champ-code" type="password" autocomplete="current-password" placeholder="Code d'accès" required>
+      <p id="erreur-code" class="erreur" hidden>Code incorrect, réessaie.</p>
+      <button type="submit">Ouvrir</button>
+    </form>
+  </section>
+
+  <!-- Application : shell injecté par shell.js -->
+  <div id="app" class="crm-app theme-direct" hidden></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
